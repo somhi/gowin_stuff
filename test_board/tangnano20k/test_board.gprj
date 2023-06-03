@@ -1,0 +1,25 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
+    <FileList>
+        <File path="../common/audio_test.v" type="file.verilog" enable="1"/>
+        <File path="../common/eartest.v" type="file.verilog" enable="1"/>
+        <File path="../common/mousetest.v" type="file.verilog" enable="1"/>
+        <File path="../common/ps2_port.v" type="file.verilog" enable="1"/>
+        <File path="../common/sdram_controller.v" type="file.verilog" enable="1"/>
+        <File path="../common/sdramtest.v" type="file.verilog" enable="1"/>
+        <File path="../common/sdtest.v" type="file.verilog" enable="1"/>
+        <File path="../common/spi.v" type="file.verilog" enable="1"/>
+        <File path="../common/switch_mode.v" type="file.verilog" enable="1"/>
+        <File path="../common/sync_generator_pal_ntsc.v" type="file.verilog" enable="1"/>
+        <File path="../common/vga_scandoubler.v" type="file.verilog" enable="1"/>
+        <File path="../common/video_processor.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll/gowin_rpll_100.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll/gowin_rpll_14.v" type="file.verilog" enable="1"/>
+        <File path="src/tld_test_board_tangnano20k.v" type="file.verilog" enable="1"/>
+        <File path="src/tld_test_board_tangnano20k.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>

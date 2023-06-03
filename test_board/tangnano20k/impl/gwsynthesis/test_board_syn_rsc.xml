@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="tld_test_board_tangnano20k">
+ <SubModule name="relojes_14_7"/>
+ <SubModule name="teclas" Register="7" Lut="28">
+  <SubModule name="teclado" Register="59" Alu="15" Lut="39"/>
+ </SubModule>
+ <SubModule name="test_slot_sd" Register="28" Lut="65">
+  <SubModule name="slotsd" Register="32" Alu="4" Lut="23"/>
+ </SubModule>
+ <SubModule name="test_raton" Register="8" Lut="11">
+  <SubModule name="lectura_de_raton" Register="42" Alu="15" Lut="32"/>
+  <SubModule name="escritura_a_raton" Register="41" Lut="64"/>
+ </SubModule>
+ <SubModule name="mensajes" Register="54" Lut="440">
+  <SubModule name="teletipo" Register="36" Lut="74">
+   <SubModule name="screen" Register="44" Alu="14" Lut="74" Bsram="1">
+    <SubModule name="bg">
+     <SubModule name="sincronismos" Register="19" Lut="40"/>
+    </SubModule>
+    <SubModule name="buffer_pantalla" Bsram="1"/>
+   </SubModule>
+  </SubModule>
+ </SubModule>
+ <SubModule name="modo_vga" Register="50" Alu="10" Lut="92">
+  <SubModule name="memscan" Bsram="2"/>
+  <SubModule name="apply_to_red" Alu="10"/>
+  <SubModule name="apply_to_green" Alu="10"/>
+  <SubModule name="apply_to_blue" Alu="10"/>
+ </SubModule>
+ <SubModule name="audio" Register="26" Alu="23" Lut="16" Bsram="2">
+  <SubModule name="dac8bits" Register="11" Alu="9"/>
+ </SubModule>
+</Module>

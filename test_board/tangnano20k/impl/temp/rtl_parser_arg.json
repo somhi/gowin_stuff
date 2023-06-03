@@ -1,0 +1,72 @@
+{
+ "Files" : [
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/audio_test.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/eartest.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/mousetest.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/ps2_port.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdram_controller.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdramtest.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdtest.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/spi.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/switch_mode.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sync_generator_pal_ntsc.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/vga_scandoubler.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/video_processor.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/gowin_rpll/gowin_rpll_100.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/gowin_rpll/gowin_rpll_14.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/tld_test_board_tangnano20k.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 3000,
+ "ResultFile" : "/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/impl/temp/rtl_parser.result",
+ "Top" : "tld_test_board_tangnano20k",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}

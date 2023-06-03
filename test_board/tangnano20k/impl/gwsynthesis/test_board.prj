@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW2AR-18C" package="QFN88" speed="8" partNumber="GW2AR-LV18QN88C8/I7"/>
+    <FileList>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/audio_test.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/eartest.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/mousetest.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/ps2_port.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdram_controller.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdramtest.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sdtest.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/spi.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/switch_mode.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/sync_generator_pal_ntsc.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/vga_scandoubler.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/common/video_processor.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/gowin_rpll/gowin_rpll_100.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/gowin_rpll/gowin_rpll_14.v" type="verilog"/>
+        <File path="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/tld_test_board_tangnano20k.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="dsp_balance" value="0"/>
+        <Option type="looplimit" value="3000"/>
+        <Option type="output_file" value="/home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/impl/gwsynthesis/test_board.vg"/>
+        <Option type="print_all_synthesis_warning" value="1"/>
+        <Option type="ram_rw_check" value="1"/>
+        <Option type="top_module" value="tld_test_board_tangnano20k"/>
+        <Option type="verilog_language" value="verilog-2001"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>
