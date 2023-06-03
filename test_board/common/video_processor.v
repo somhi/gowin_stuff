@@ -385,7 +385,7 @@ module updater (
    reg [59:0] regdna = 60'h000000000000000;
    reg [3:0] cntdigitsdna = 4'd0;
    reg [7:0] hexvalues[0:15];
-   reg [7:0] stringlist[0:2047];
+   reg [7:0] stringlist[0:1000];          //2048
    integer i;
    initial begin
       for (i=0;i<10;i=i+1) begin
@@ -394,7 +394,7 @@ module updater (
       for (i=10;i<16;i=i+1) begin
          hexvalues[i] = "A" - 10 + i;
       end
-      for (i=0;i<2048;i=i+1) begin
+      for (i=0;i<1000;i=i+1) begin        //2048
          stringlist[i] = 8'hFF;
       end
       stringlist[0] = 8'd22;  // ADDRVGA

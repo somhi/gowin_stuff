@@ -84,13 +84,13 @@ module dac (DACout, DACin, Clk, Reset);
 	begin
 		if(Reset)
 		begin
-			SigmaLatch <= #1 1'b1 << (`MSBI+1);
-			DACout <= #1 1'b0;
+			SigmaLatch <=  1'b1 << (`MSBI+1);
+			DACout <=  1'b0;
 		end
 		else
 		begin
-			SigmaLatch <= #1 SigmaAdder;
-			DACout <= #1 SigmaLatch[`MSBI+2];
+			SigmaLatch <=  SigmaAdder;
+			DACout <=  SigmaLatch[`MSBI+2];
 		end
 	end
 endmodule
