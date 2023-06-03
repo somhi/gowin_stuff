@@ -7,13 +7,13 @@
 
 -mod_name Gowin_rPLL_14
 -file_name gowin_rpll_14
--path /home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/test_placa/tangnano20k/src/gowin_rpll/
+-path /home/jordi/FPGAs/FPGA-Tang20k/GOWIN_HDL/gowin_stuff/test_board/tangnano20k/src/gowin_rpll/
 -type PLL
 -rPll true
 -file_type vlg
 -dev_type GW2AR-18C
 -dyn_idiv_sel false
--idiv_sel 2
+-idiv_sel 1
 -dyn_fbdiv_sel false
 -fbdiv_sel 1
 -dyn_odiv_sel false
@@ -22,7 +22,7 @@
 -dyn_da_en true
 -rst_sig false
 -rst_sig_p false
--fclkin 27
+-fclkin 14
 -clkfb_sel 0
 -en_lock true
 -clkout_bypass false

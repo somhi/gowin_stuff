@@ -36,22 +36,15 @@ module tld_test_board_tangnano20k (
    // inout wire [7:0] sram_dq,
    // output wire sram_we_n,
    //---------------------------
-   // output wire joy_load_n,
-   // output wire joy_clk,
-   // input wire joy_data,
-   //---------------------------
    output wire [1:0] led,
    //---------------------------
+   // SD card
    output wire sd_cs_n,
    output wire sd_clk,
    output wire sd_mosi,
-   input wire sd_miso,
+   input  wire sd_miso,
    //---------------------------
-   // output wire flash_cs_n,
-   // output wire flash_clk,
-   // output wire flash_mosi,
-   // input wire flash_miso,
-   //---------------------------
+   // SDRAM
    // output wire sdram_clk,          // señales validas en flanco de suida de CK
    // output wire sdram_cke,
    // output wire sdram_dqmh_n,      // mascara para byte alto o bajo
@@ -64,12 +57,20 @@ module tld_test_board_tangnano20k (
    // output wire sdram_cas_n,
    // inout tri [15:0] sdram_dq,
    //---------------------------
+   // VGA
    output wire [1:0] vga_r,
    output wire [1:0] vga_g,
    output wire [1:0] vga_b,
    output wire vga_hs,
    output wire vga_vs,
-   //
+   //---------------------------
+   // HDMI TX
+   output wire tmds_clk_n,
+   output wire tmds_clk_p,
+   output wire [2:0] tmds_d_n,
+   output wire [2:0] tmds_d_p, 
+   //---------------------------
+   // AUDIO
    output wire pwm_audio_out_l,
    output wire pwm_audio_out_r
    );
@@ -80,6 +81,12 @@ module tld_test_board_tangnano20k (
    wire [5:0] vga_r_x;
    wire [5:0] vga_g_x;
    wire [5:0] vga_b_x;
+
+   // wire [1:0] vga_r;
+   // wire [1:0] vga_g;
+   // wire [1:0] vga_b;
+   // wire vga_hs;
+   // wire vga_vs;
    
    wire [5:0] r_to_vga, g_to_vga, b_to_vga;
    wire hsync_to_vga, vsync_to_vga, csync_to_vga;
@@ -228,6 +235,17 @@ module tld_test_board_tangnano20k (
    assign vga_r = vga_r_x[5:4];
    assign vga_g = vga_g_x[5:4];
    assign vga_b = vga_b_x[5:4];
+
+   // HDMI TO VGA OUTPUT
+   assign tmds_clk_n  = vga_hs;
+   assign tmds_clk_p  = vga_vs;
+   assign tmds_d_n[0] = vga_b[0];
+   assign tmds_d_p[0] = vga_b[1];
+   assign tmds_d_n[1] = vga_g[0];
+   assign tmds_d_p[1] = vga_g[1];
+   assign tmds_d_n[2] = vga_r[0];
+   assign tmds_d_p[2] = vga_r[1];
+
 
    audio_test audio (
       .clk(clk14),
