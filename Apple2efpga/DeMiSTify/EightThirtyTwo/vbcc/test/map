@@ -1,0 +1,89 @@
+           (0x0 bytes)
+0x00000000 Section: ../..//lib832/crt0.a,.text.startup
+0x0000000d    _InterruptVector
+           (0x29 bytes)
+0x00000029 Section: ../..//lib832/crt0.a,.text.interrupt
+           (0x1 bytes)
+0x0000002a Section: ../..//lib832/crt0.a,.text.premain2
+           (0x3 bytes)
+0x0000002d Section: ../..//lib832/crt0.a,.text
+0x00000000    _STACKSIZE
+           (0x0 bytes)
+0x0000002d Section: ../..//lib832/crt0.a,.text.premain
+0x0000002d    _premain
+           (0x58 bytes)
+0x00000085 Section: ../..//lib832/lib832.a,.text.0
+           (0x9f bytes)
+0x00000124 Section: ../..//lib832/lib832.a,.rodata.1
+           (0x11 bytes)
+0x00000135 Section: ../..//lib832/lib832.a,.text.2
+           (0x31 bytes)
+0x00000166 Section: ../..//lib832/lib832.a,.text.3
+           (0x1c2 bytes)
+0x00000328 Section: ../..//lib832/lib832.a,.text.5
+0x00000328    _printf
+           (0x13 bytes)
+0x0000033b Section: ../..//lib832/lib832.a,.text.0
+           (0x1b bytes)
+0x00000356 Section: (null),.text._div_32by32
+0x00000356    _div_u32byu32
+0x0000038a    _div_s32bys32
+           (0x65 bytes)
+0x000003bb Section: divtest.o,.text.0
+0x000003bb    _sdiv
+           (0x44 bytes)
+0x000003ff Section: divtest.o,.rodata.1
+           (0x12 bytes)
+0x00000411 Section: divtest.o,.rodata.2
+           (0x12 bytes)
+0x00000423 Section: divtest.o,.rodata.3
+           (0x1b bytes)
+0x0000043e Section: divtest.o,.text.4
+0x0000043e    _smod
+           (0x3d bytes)
+0x0000047b Section: divtest.o,.rodata.5
+           (0x12 bytes)
+0x0000048d Section: divtest.o,.rodata.6
+           (0x12 bytes)
+0x0000049f Section: divtest.o,.rodata.7
+           (0x1c bytes)
+0x000004bb Section: divtest.o,.text.8
+0x000004bb    _udiv
+           (0x3d bytes)
+0x000004f8 Section: divtest.o,.rodata.9
+           (0x12 bytes)
+0x0000050a Section: divtest.o,.rodata.a
+           (0x12 bytes)
+0x0000051c Section: divtest.o,.rodata.b
+           (0x1b bytes)
+0x00000537 Section: divtest.o,.text.c
+0x00000537    _umod
+           (0x3d bytes)
+0x00000574 Section: divtest.o,.rodata.d
+           (0x12 bytes)
+0x00000586 Section: divtest.o,.rodata.e
+           (0x12 bytes)
+0x00000598 Section: divtest.o,.rodata.f
+           (0x1c bytes)
+0x000005b4 Section: divtest.o,.text.10
+0x000005b4    _main
+           (0xe2 bytes)
+0x00000696 Section: <internal>,__ctors_start__
+0x00000696    __ctors_start__
+           (0x0 bytes)
+0x00000696 Section: <internal>,__ctors_end__
+0x00000696    __ctors_end__
+           (0x0 bytes)
+0x00000696 Section: <internal>,__dtors_start__
+0x00000696    __dtors_start__
+           (0x0 bytes)
+0x00000696 Section: <internal>,__dtors_end__
+0x00000696    __dtors_end__
+           (0x0 bytes)
+0x00000696 Section: <internal>,__bss_start__
+0x00000698    __bss_start__
+           (0x2 bytes)
+0x00000698 Section: ../..//lib832/lib832.a,.bss.a
+           (0x10 bytes)
+0x000006a8 Section: <internal>,__bss_end__
+0x000006a8    __bss_end__

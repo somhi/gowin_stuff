@@ -1,0 +1,55 @@
+           (0x0 bytes)
+0x00000000 Section: crt0.a,.text.startup
+0x0000000d    _InterruptVector
+           (0x29 bytes)
+0x00000029 Section: crt0.a,.text.interrupt
+           (0x1 bytes)
+0x0000002a Section: crt0.a,.text.premain2
+           (0x3 bytes)
+0x0000002d Section: crt0.a,.text
+0x00000000    _STACKSIZE
+           (0x0 bytes)
+0x0000002d Section: crt0.a,.text.premain
+0x0000002d    _premain
+           (0x58 bytes)
+0x00000085 Section: lib832.a,.text.0
+           (0x9f bytes)
+0x00000124 Section: lib832.a,.rodata.1
+           (0x11 bytes)
+0x00000135 Section: lib832.a,.text.2
+           (0x31 bytes)
+0x00000166 Section: lib832.a,.text.3
+           (0x1c2 bytes)
+0x00000328 Section: lib832.a,.text.5
+0x00000328    _printf
+           (0x13 bytes)
+0x0000033b Section: lib832.a,.text.0
+           (0x1b bytes)
+0x00000356 Section: (null),.text._div_32by32
+0x00000356    _div_u32byu32
+0x0000038a    _div_s32bys32
+           (0x65 bytes)
+0x000003bb Section: 832dir/helloworld.o,.text.0
+0x000003bb    _main
+           (0x10 bytes)
+0x000003cb Section: 832dir/helloworld.o,.rodata.1
+           (0x13 bytes)
+0x000003de Section: <internal>,__ctors_start__
+0x000003de    __ctors_start__
+           (0x0 bytes)
+0x000003de Section: <internal>,__ctors_end__
+0x000003de    __ctors_end__
+           (0x0 bytes)
+0x000003de Section: <internal>,__dtors_start__
+0x000003de    __dtors_start__
+           (0x0 bytes)
+0x000003de Section: <internal>,__dtors_end__
+0x000003de    __dtors_end__
+           (0x0 bytes)
+0x000003de Section: <internal>,__bss_start__
+0x000003e0    __bss_start__
+           (0x2 bytes)
+0x000003e0 Section: lib832.a,.bss.a
+           (0x10 bytes)
+0x000003f0 Section: <internal>,__bss_end__
+0x000003f0    __bss_end__
