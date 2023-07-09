@@ -156,6 +156,31 @@ architecture datapath of mist_top is
     );
   end component;
 
+  component MOCKINGBOARD
+    port (
+    CLK_14M : in std_logic;
+    PHASE_ZERO : in std_logic;
+    PHASE_ZERO_R : in std_logic;
+    PHASE_ZERO_F : in std_logic;
+    I_ADDR : in std_logic_vector(7 downto 0);
+    I_DATA : in std_logic_vector(7 downto 0);
+    O_DATA : out std_logic_vector(7 downto 0);
+    I_RW_L : in std_logic;
+    O_IRQ_L : out std_logic;
+    O_NMI_L : out std_logic;
+    I_IOSEL_L : in std_logic;
+    I_RESET_L : in std_logic;
+    I_ENA_H : in std_logic;
+    O_AUDIO_L : out std_logic_vector(9 downto 0);
+    O_AUDIO_R : out std_logic_vector(9 downto 0)
+  );
+  end component;
+
+  signal addr_8 : std_logic_vector(15 downto 0);
+  signal r_6 : std_logic_vector(7 downto 0);
+  signal g_6 : std_logic_vector(7 downto 0);
+  signal b_6 : std_logic_vector(7 downto 0);
+
   signal CLK_28M, CLK_14M, CLK_2M, CLK_2M_D, PHASE_ZERO, PHASE_ZERO_R, PHASE_ZERO_F : std_logic;
   signal clk_div : unsigned(1 downto 0);
   signal IO_SELECT, DEVICE_SELECT : std_logic_vector(7 downto 0);
@@ -475,7 +500,10 @@ begin
 
   LED <= not (D1_ACTIVE or D2_ACTIVE);
 
-  mb : work.mockingboard
+
+  addr_8 <= std_logic_vector(ADDR);
+
+  mb : mockingboard
     port map (
       CLK_14M    => CLK_14M,
       PHASE_ZERO => PHASE_ZERO,
@@ -484,7 +512,7 @@ begin
       I_RESET_L => not reset,
       I_ENA_H   => status(6),
 
-      I_ADDR    => std_logic_vector(ADDR)(7 downto 0),
+      I_ADDR    => addr_8(7 downto 0),
       I_DATA    => std_logic_vector(D),
       unsigned(O_DATA)    => PSG_DO,
       I_RW_L    => not cpu_we,
@@ -553,6 +581,11 @@ begin
       ps2_kbd_data => ps2Data
     );
 
+
+  r_6 <= std_logic_vector(r);
+  g_6 <= std_logic_vector(g);
+  b_6 <= std_logic_vector(b);
+
  mist_video: work.mist.mist_video
     generic map(
 	  SD_HCNT_WIDTH => 10
@@ -569,9 +602,9 @@ begin
       SPI_SCK => SPI_SCK,
       SPI_SS3 => SPI_SS3,
 
-      R => std_logic_vector(r)(7 downto 2),
-      G => std_logic_vector(g)(7 downto 2),
-      B => std_logic_vector(b)(7 downto 2),
+      R => r_6(7 downto 2),
+      G => g_6(7 downto 2),
+      B => b_6(7 downto 2),
       HSync => hsync,
       VSync => vsync,
       VGA_HS => VGA_HS,

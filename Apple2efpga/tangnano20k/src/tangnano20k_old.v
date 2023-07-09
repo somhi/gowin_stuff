@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module FlappyBird_tangnano20k
+module tangnano20k_top
 	(
 		input SYS_CLK,        
 

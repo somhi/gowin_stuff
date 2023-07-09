@@ -93,6 +93,39 @@ entity MOCKINGBOARD is
     );
   end component;
 
+  component via6522
+    port (
+    clock : in std_logic;
+    rising : in std_logic;
+    falling : in std_logic;
+    reset : in std_logic;
+    addr : in std_logic_vector(3 downto 0);
+    wen : in std_logic;
+    ren : in std_logic;
+    data_in : in std_logic_vector(7 downto 0);
+    data_out : out std_logic_vector(7 downto 0);
+    phi2_ref : out std_logic;
+    port_a_o : out std_logic_vector(7 downto 0);
+    port_a_t : out std_logic_vector(7 downto 0);
+    port_a_i : in std_logic_vector(7 downto 0);
+    port_b_o : out std_logic_vector(7 downto 0);
+    port_b_t : out std_logic_vector(7 downto 0);
+    port_b_i : in std_logic_vector(7 downto 0);
+    ca1_i : in std_logic;
+    ca2_o : out std_logic;
+    ca2_i : in std_logic;
+    ca2_t : out std_logic;
+    cb1_o : out std_logic;
+    cb1_i : in std_logic;
+    cb1_t : out std_logic;
+    cb2_o : out std_logic;
+    cb2_i : in std_logic;
+    cb2_t : out std_logic;
+    irq : out std_logic
+  );
+end component;
+
+
 begin
 
   O_DATA <= o_data_l when I_ADDR(7) = '0' else o_data_r;
@@ -105,7 +138,7 @@ begin
   VIA_CE_F <= PHASE_ZERO_R;
 
 -- Left Channel Combo
-  m6522_left : work.via6522
+  m6522_left : via6522
     port map (
       clock       => clk_14M,
       rising      => VIA_CE_R,
@@ -168,7 +201,7 @@ begin
   O_AUDIO_L <= std_logic_vector(unsigned("00" & o_psg_al) + unsigned("00" & o_psg_bl) + unsigned("00" & o_psg_cl));
 
 -- Right Channel Combo
-  m6522_right : work.via6522
+  m6522_right : via6522
     port map (
       clock       => clk_14M,
       rising      => VIA_CE_R,
