@@ -52,10 +52,10 @@
         <File path="../demistify_config_pkg.vhd" type="file.vhdl" enable="1"/>
         <File path="../disk_ii.vhd" type="file.vhdl" enable="1"/>
         <File path="../disk_ii_rom.vhd" type="file.vhdl" enable="1"/>
-        <File path="../firmware/controller_rom1_byte.vhd" type="file.vhdl" enable="1"/>
-        <File path="../firmware/controller_rom1_word.vhd" type="file.vhdl" enable="0"/>
-        <File path="../firmware/controller_rom2_byte.vhd" type="file.vhdl" enable="1"/>
-        <File path="../firmware/controller_rom2_word.vhd" type="file.vhdl" enable="0"/>
+        <File path="../firmware/controller_rom1_byte.vhd" type="file.vhdl" enable="0"/>
+        <File path="../firmware/controller_rom1_word.vhd" type="file.vhdl" enable="1"/>
+        <File path="../firmware/controller_rom2_byte.vhd" type="file.vhdl" enable="0"/>
+        <File path="../firmware/controller_rom2_word.vhd" type="file.vhdl" enable="1"/>
         <File path="../keyboard.vhd" type="file.vhdl" enable="1"/>
         <File path="../mist/mist-modules/dac.vhd" type="file.vhdl" enable="1"/>
         <File path="../mist/mist-modules/mist.vhd" type="file.vhdl" enable="1"/>
@@ -64,11 +64,11 @@
         <File path="../mockingboard/via6522.vhd" type="file.vhdl" enable="1"/>
         <File path="../mockingboard/vol_table_array.vhd" type="file.vhdl" enable="1"/>
         <File path="../spram.vhd" type="file.vhdl" enable="1"/>
-        <File path="../tangnano20k/src/tangnano20k_top.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/i2s/audio_i2s.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/tangnano20k_top.vhd" type="file.vhdl" enable="1"/>
         <File path="../timing_generator.vhd" type="file.vhdl" enable="1"/>
         <File path="../tv_controller.vhd" type="file.vhdl" enable="1"/>
         <File path="../video_generator.vhd" type="file.vhdl" enable="1"/>
-        <File path="src/i2s/audio_i2s.vhd" type="file.vhdl" enable="1"/>
         <File path="src/tangnano20k.cst" type="file.cst" enable="1"/>
         <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_multicycles.sdc" type="file.sdc" enable="0"/>
         <File path="../apple2efpga.sdc" type="file.sdc" enable="1"/>

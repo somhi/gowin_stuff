@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity controller_rom2 is
 generic	(
-	ADDR_WIDTH : integer := 8; -- ROM's address width (words, not bytes)
+	ADDR_WIDTH : integer := 14; -- ROM's address width (words, not bytes)
 	COL_WIDTH  : integer := 8;  -- Column width (8bit -> byte)
 	NB_COL     : integer := 4  -- Number of columns in memory
 	);
