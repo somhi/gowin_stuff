@@ -5,17 +5,18 @@
     <Version>5</Version>
     <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
     <FileList>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/arcade_inputs.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/cofi.sv" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/data_io.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/mist_video.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/osd.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/rgb2ypbpr.sv" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/scandoubler.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/user_io.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist_sd_card.sv" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/sdram.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mockingboard/YM2149.sv" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/arcade_inputs.v" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/cofi.sv" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/data_io.v" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/mist_video.v" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/osd.v" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/rgb2ypbpr.sv" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/scandoubler.v" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/user_io.sv" type="file.verilog" enable="1"/>
+        <File path="../mist/mist-modules/user_io.v" type="file.verilog" enable="0"/>
+        <File path="../mist/mist_sd_card.sv" type="file.verilog" enable="1"/>
+        <File path="../mist/sdram.v" type="file.verilog" enable="1"/>
+        <File path="../mockingboard/YM2149.sv" type="file.verilog" enable="1"/>
         <File path="src/dualshock_controller.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
@@ -23,51 +24,53 @@
         <File path="src/hdmi/svo_hdmi_out.v" type="file.verilog" enable="1"/>
         <File path="src/hdmi/svo_tcard.v" type="file.verilog" enable="1"/>
         <File path="src/hdmi/svo_tmds.v" type="file.verilog" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner_le.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_debug.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_decode.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_hazard.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_pkg.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_shifter.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/interrupt_controller.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/io_ps2_com.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/jtag_uart.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/simple_uart.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/spi_controller.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/substitute_mcu.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/controller/timer_controller.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/firmware/controller_rom.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/PS2_Ctrl.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/R65Cx2.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/T65/T65.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/T65/T65_ALU.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/T65/T65_MCode.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/T65/T65_Pack.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/apple2.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/demistify_config_pkg.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/disk_ii.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/disk_ii_rom.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/firmware/controller_rom1_word.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/firmware/controller_rom2_word.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/keyboard.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/dac.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist-modules/mist.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mist/mist_top.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mockingboard/mockingboard.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mockingboard/via6522.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/mockingboard/vol_table_array.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/spram.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/tangnano20k/src/tangnano20k_top.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/timing_generator.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/tv_controller.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/video_generator.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_aligner_le.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_alu.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_cpu.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_debug.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_decode.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_fetchloadstore.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_hazard.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_pkg.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_shifter.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/interrupt_controller.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/io_ps2_com.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/jtag_uart.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/simple_uart.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/spi_controller.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/substitute_mcu.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/controller/timer_controller.vhd" type="file.vhdl" enable="1"/>
+        <File path="../DeMiSTify/firmware/controller_rom.vhd" type="file.vhdl" enable="1"/>
+        <File path="../PS2_Ctrl.vhd" type="file.vhdl" enable="1"/>
+        <File path="../R65Cx2.vhd" type="file.vhdl" enable="1"/>
+        <File path="../T65/T65.vhd" type="file.vhdl" enable="1"/>
+        <File path="../T65/T65_ALU.vhd" type="file.vhdl" enable="1"/>
+        <File path="../T65/T65_MCode.vhd" type="file.vhdl" enable="1"/>
+        <File path="../T65/T65_Pack.vhd" type="file.vhdl" enable="1"/>
+        <File path="../apple2.vhd" type="file.vhdl" enable="1"/>
+        <File path="../demistify_config_pkg.vhd" type="file.vhdl" enable="1"/>
+        <File path="../disk_ii.vhd" type="file.vhdl" enable="1"/>
+        <File path="../disk_ii_rom.vhd" type="file.vhdl" enable="1"/>
+        <File path="../firmware/controller_rom1_byte.vhd" type="file.vhdl" enable="1"/>
+        <File path="../firmware/controller_rom1_word.vhd" type="file.vhdl" enable="0"/>
+        <File path="../firmware/controller_rom2_byte.vhd" type="file.vhdl" enable="1"/>
+        <File path="../firmware/controller_rom2_word.vhd" type="file.vhdl" enable="0"/>
+        <File path="../keyboard.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mist/mist-modules/dac.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mist/mist-modules/mist.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mist/mist_top.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mockingboard/mockingboard.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mockingboard/via6522.vhd" type="file.vhdl" enable="1"/>
+        <File path="../mockingboard/vol_table_array.vhd" type="file.vhdl" enable="1"/>
+        <File path="../spram.vhd" type="file.vhdl" enable="1"/>
+        <File path="../tangnano20k/src/tangnano20k_top.vhd" type="file.vhdl" enable="1"/>
+        <File path="../timing_generator.vhd" type="file.vhdl" enable="1"/>
+        <File path="../tv_controller.vhd" type="file.vhdl" enable="1"/>
+        <File path="../video_generator.vhd" type="file.vhdl" enable="1"/>
         <File path="src/i2s/audio_i2s.vhd" type="file.vhdl" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/Apple2efpga/tangnano20k/src/tangnano20k.cst" type="file.cst" enable="1"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_multicycles.sdc" type="file.sdc" enable="0"/>
-        <File path="/home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/apple2efpga.sdc" type="file.sdc" enable="1"/>
+        <File path="src/tangnano20k.cst" type="file.cst" enable="1"/>
+        <File path="../DeMiSTify/EightThirtyTwo/RTL/eightthirtytwo_multicycles.sdc" type="file.sdc" enable="0"/>
+        <File path="../apple2efpga.sdc" type="file.sdc" enable="1"/>
     </FileList>
 </Project>

@@ -25,7 +25,7 @@
 module user_io #(parameter STRLEN=0, parameter PS2DIV=100, parameter ROM_DIRECT_UPLOAD=0) (
 	input [(8*STRLEN)-1:0] conf_str,
 	output       [9:0]  conf_addr, // RAM address for config string, if STRLEN=0
-	input        [7:0]  conf_chr,
+	input        [7:0]  conf_chr = '0,
 
 	input               clk_sys, // clock for system-related messages (kbd, joy, etc...)
 	input               clk_sd,  // clock for SD-card related messages
@@ -86,8 +86,8 @@ module user_io #(parameter STRLEN=0, parameter PS2DIV=100, parameter ROM_DIRECT_
 	output reg          mouse_strobe, // mouse data is valid on mouse_strobe
 
 	// serial com port
-	input [7:0]         serial_data,
-	input               serial_strobe
+	input [7:0]         serial_data = '0,
+	input               serial_strobe = 0
 );
 
 reg [6:0]     sbuf;
