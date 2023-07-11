@@ -5,61 +5,67 @@ use ieee.numeric_std.all;
 library work;
 use work.demistify_config_pkg.all;
 
--- -----------------------------------------------------------------------
+-------------------------------------------------------------------------
 
-entity neptuno_top is
+entity tangnano20k_top is
 	port
 	(
-		clock_50_i		:	 IN STD_LOGIC;
-		LED        	 	:    OUT STD_LOGIC;
-		DRAM_CLK		:	 OUT STD_LOGIC;
-		DRAM_CKE		:	 OUT STD_LOGIC;
-		DRAM_ADDR		:	 OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
-		DRAM_BA			:	 OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-		DRAM_DQ			:	 INOUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		DRAM_LDQM		:	 OUT STD_LOGIC;
-		DRAM_UDQM		:	 OUT STD_LOGIC;
-		DRAM_CS_N		:	 OUT STD_LOGIC;
-		DRAM_WE_N		:	 OUT STD_LOGIC;
-		DRAM_CAS_N		:	 OUT STD_LOGIC;
-		DRAM_RAS_N		:	 OUT STD_LOGIC;
-		VGA_HS			:	 OUT STD_LOGIC;
-		VGA_VS			:	 OUT STD_LOGIC;
-		VGA_R			:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_G			:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
-		VGA_B			:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+		SYS_CLK			: IN  STD_LOGIC;
+		
+		LED0        	: OUT STD_LOGIC;
+
+		-- sdram magic ports 
+		O_sdram_clk   	: OUT STD_LOGIC;
+		O_sdram_cke   	: OUT STD_LOGIC;
+		O_sdram_cs_n  	: OUT STD_LOGIC;
+		O_sdram_cas_n 	: OUT STD_LOGIC;
+		O_sdram_ras_n 	: OUT STD_LOGIC;
+		O_sdram_wen_n 	: OUT STD_LOGIC;
+		IO_sdram_dq   	: INOUT STD_LOGIC_VECTOR(31 downto 0);
+		O_sdram_addr  	: OUT STD_LOGIC_VECTOR(10 downto 0);
+		O_sdram_ba    	: OUT STD_LOGIC_VECTOR(1 downto 0);
+		O_sdram_dqm   	: OUT STD_LOGIC_VECTOR(3 downto 0);
+
+		VGA_HS			: OUT STD_LOGIC;
+		VGA_VS			: OUT STD_LOGIC;
+		VGA_R			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		VGA_G			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		VGA_B			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+
 		-- AUDIO
-		SIGMA_R                     : OUT STD_LOGIC;
-		SIGMA_L                     : OUT STD_LOGIC;
+		SIGMA_R			: OUT STD_LOGIC;
+		SIGMA_L			: OUT STD_LOGIC;
+
 		-- I2S audio		
-		I2S_BCLK				: out   std_logic								:= '0';
-		I2S_LRCLK				: out   std_logic								:= '0';
-		I2S_DATA				: out   std_logic								:= '0';		
+		I2S_BCLK		: OUT   STD_LOGIC	:= '0';
+		I2S_LRCLK		: OUT   STD_LOGIC	:= '0';
+		I2S_DATA		: OUT   STD_LOGIC	:= '0';	
+		I2S_EN			: OUT   STD_LOGIC	:= '0';	
+
 		-- JOYSTICK 
-		JOY_CLK				: out   std_logic;
-		JOY_LOAD 			: out   std_logic;
-		JOY_DATA 			: in    std_logic;
-		joyP7_o			    : out   std_logic								:= '1';
+		-- JOY_CLK			: OUT   STD_LOGIC;
+		-- JOY_LOAD 		: OUT   STD_LOGIC;
+		-- JOY_DATA 		: in    STD_LOGIC;
+		-- joyP7_o			: OUT   STD_LOGIC	:= '1';
+
 		-- PS2
-		PS2_KEYBOARD_CLK            :    INOUT STD_LOGIC;
-		PS2_KEYBOARD_DAT            :    INOUT STD_LOGIC;
-		PS2_MOUSE_CLK               :    INOUT STD_LOGIC;
-		PS2_MOUSE_DAT               :    INOUT STD_LOGIC;
+		PS2_KEYBOARD_CLK: INOUT STD_LOGIC;
+		PS2_KEYBOARD_DAT: INOUT STD_LOGIC;
+		PS2_MOUSE_CLK   : INOUT STD_LOGIC;
+		PS2_MOUSE_DAT   : INOUT STD_LOGIC;
+
 		-- UART
-		AUDIO_INPUT                 : IN STD_LOGIC;
-		--STM32
-        stm_rx_o            : out std_logic     := 'Z'; -- stm RX pin, so, is OUT on the slave
-        stm_tx_i            : in  std_logic     := 'Z'; -- stm TX pin, so, is IN on the slave
-        stm_rst_o           : out std_logic     := 'Z'; -- '0' to hold the microcontroller reset line, to free the SD card
+		AUDIO_INPUT     : IN STD_LOGIC;
+
 		-- SD Card
-		sd_cs_n_o                      : out   std_logic := '1';
-		sd_sclk_o                      : out   std_logic := '0';
-		sd_mosi_o                      : out   std_logic := '0';
-		sd_miso_i                      : in    std_logic
+		sd_cs_n_o       : out   STD_LOGIC := '1';
+		sd_sclk_o       : out   STD_LOGIC := '0';
+		sd_mosi_o       : out   STD_LOGIC := '0';
+		sd_miso_i       : in    STD_LOGIC
 	);
 END entity;
 
-architecture RTL of neptuno_top is
+architecture RTL of tangnano20k_top is
 	
 -- System clocks
 	signal locked : std_logic;
@@ -125,50 +131,31 @@ Port (
 end component;	
 
 -- DAC AUDIO     
-signal dac_l: signed(9 downto 0);
-signal dac_r: signed(9 downto 0);
-signal dac_l_s : signed(15 downto 0);
-signal dac_r_s : signed(15 downto 0);
+	signal dac_l: signed(9 downto 0);
+	signal dac_r: signed(9 downto 0);
+	signal dac_l_s : signed(15 downto 0);
+	signal dac_r_s : signed(15 downto 0);
 
-
-component joydecoder is
-Port ( 	
-		clk 			: in std_logic; 
-		joy_data    : in std_logic;
-		joy_clk		: out std_logic;
-		joy_load_n	: out std_logic;
-		joy1up		: out std_logic;
-		joy1down		: out std_logic;
-		joy1left		: out std_logic;
-		joy1right	: out std_logic;
-		joy1fire1	: out std_logic;
-		joy1fire2	: out std_logic;
-		joy2up		: out std_logic;
-		joy2down		: out std_logic;
-		joy2left		: out std_logic;
-		joy2right	: out std_logic;
-		joy2fire1	: out std_logic;
-		joy2fire2	: out std_logic
-);
-end component;
+	signal i2s_mclk		    : std_logic;
 
 -- JOYSTICKS
-	signal joy1up			: std_logic								:= '1';
-	signal joy1down			: std_logic								:= '1';
-	signal joy1left			: std_logic								:= '1';
-	signal joy1right		: std_logic								:= '1';
-	signal joy1fire1		: std_logic								:= '1';
-	signal joy1fire2		: std_logic								:= '1';
-	signal joy2up			: std_logic								:= '1';
-	signal joy2down			: std_logic								:= '1';
-	signal joy2left			: std_logic								:= '1';
-	signal joy2right		: std_logic								:= '1';
-	signal joy2fire1		: std_logic								:= '1';
-	signal joy2fire2		: std_logic								:= '1';
+	signal joy1up			: std_logic		:= '1';
+	signal joy1down			: std_logic		:= '1';
+	signal joy1left			: std_logic		:= '1';
+	signal joy1right		: std_logic		:= '1';
+	signal joy1fire1		: std_logic		:= '1';
+	signal joy1fire2		: std_logic		:= '1';
+	signal joy2up			: std_logic		:= '1';
+	signal joy2down			: std_logic		:= '1';
+	signal joy2left			: std_logic		:= '1';
+	signal joy2right		: std_logic		:= '1';
+	signal joy2fire1		: std_logic		:= '1';
+	signal joy2fire2		: std_logic		:= '1';
 	signal clk_sys_out   	: std_logic;
-	-- i2s 
-	signal i2s_mclk		    : std_logic;
-	
+
+	--
+	signal sdram_addr		: std_logic_vector(12 downto 0);
+
 begin
 
 
@@ -192,20 +179,19 @@ ps2_keyboard_clk <= '0' when ps2_keyboard_clk_out='0' else 'Z';
 joya<="11" & joy1fire2 & joy1fire1 & joy1right & joy1left & joy1down & joy1up;
 joyb<="11" & joy2fire2 & joy2fire1 & joy2right & joy2left & joy2down & joy2up;
 
-stm_rst_o <= '0';
 
-
-VGA_R<=vga_red(7 downto 2);
-VGA_G<=vga_green(7 downto 2);
-VGA_B<=vga_blue(7 downto 2);
+VGA_R<=vga_red(7 downto 5);
+VGA_G<=vga_green(7 downto 5);
+VGA_B<=vga_blue(7 downto 5);
 VGA_HS<=vga_hsync;
 VGA_VS<=vga_vsync;
 
+I2S_EN <= '1';
 
 -- I2S audio
 audio_i2s: entity work.audio_top
 port map(
-	clk_50MHz => clock_50_i,
+	clk_50MHz => SYS_CLK,
 	dac_MCLK  => I2S_MCLK,
 	dac_LRCK  => I2S_LRCLK,
 	dac_SCLK  => I2S_BCLK,
@@ -214,37 +200,17 @@ port map(
 	R_data    => std_logic_vector(dac_r_s)
 );		
 
---dac_l_s <= (dac_l & dac_l(9 downto 4));
---dac_r_s <= (dac_r & dac_r(9 downto 4));
+
 dac_l_s <= ((not dac_l(9)) & dac_l(8 downto 0) & dac_l(9 downto 4));
 dac_r_s <= ((not dac_r(9)) & dac_r(8 downto 0) & dac_r(9 downto 4));
-
-	-- JOYSTICKS
-joy: joydecoder
-	  port map (
-		clk				=> clock_50_i,
-		joy_clk			=> JOY_CLK,
-		joy_load_n 		=> JOY_LOAD,
-		joy_data			=> JOY_DATA,		
-		joy1up  			=> joy1up,
-		joy1down			=> joy1down,
-		joy1left			=> joy1left,
-		joy1right		=> joy1right,
-		joy1fire1		=> joy1fire1,
-		joy1fire2		=> joy1fire2,
-		joy2up  			=> joy2up,
-		joy2down			=> joy2down,
-		joy2left			=> joy2left,
-		joy2right		=> joy2right,
-		joy2fire1		=> joy2fire1,
-		joy2fire2		=> joy2fire2
-	);
 	
+O_sdram_addr <= sdram_addr(10 downto 0);
 
 guest: COMPONENT  mist_top
   port map (
-    CLOCK_27 => clock_50_i&clock_50_i,
-    LED => LED,
+    CLOCK_27 => SYS_CLK&SYS_CLK,
+    LED => LED0,
+	
 	--SPI
 	SPI_DO => spi_fromguest,
 	SPI_DI => spi_toguest,
@@ -252,25 +218,29 @@ guest: COMPONENT  mist_top
 	SPI_SS2 => spi_ss2,
 	SPI_SS3 => spi_ss3,
 	CONF_DATA0 => conf_data0,
+
 	--SDRAM
-	SDRAM_DQ => DRAM_DQ,
-	SDRAM_A => DRAM_ADDR,
-	SDRAM_DQML => DRAM_LDQM,
-	SDRAM_DQMH => DRAM_UDQM,
-	SDRAM_nWE => DRAM_WE_N,
-	SDRAM_nCAS => DRAM_CAS_N,
-	SDRAM_nRAS => DRAM_RAS_N,
-	SDRAM_nCS => DRAM_CS_N,
-	SDRAM_BA => DRAM_BA,
-	SDRAM_CLK => DRAM_CLK,
-	SDRAM_CKE => DRAM_CKE,
+	SDRAM_DQ => IO_sdram_dq(15 downto 0),
+	SDRAM_A => sdram_addr,
+	SDRAM_DQML => O_sdram_dqm(0),
+	SDRAM_DQMH => O_sdram_dqm(1),
+	SDRAM_nWE => O_sdram_wen_n,
+	SDRAM_nCAS => O_sdram_cas_n,
+	SDRAM_nRAS => O_sdram_ras_n,
+	SDRAM_nCS => O_sdram_cs_n,
+	SDRAM_BA => O_sdram_ba,
+	SDRAM_CLK => O_sdram_clk,
+	SDRAM_CKE => O_sdram_cke,
+
 	--AUDIO
     AUDIO_L => SIGMA_L,
     AUDIO_R => SIGMA_R,
-		DAC_C_L   => dac_l,
-		DAC_C_R   => dac_r,
+	DAC_C_L => dac_l,
+	DAC_C_R => dac_r,
+
 	--EAR
 	UART_RX => AUDIO_INPUT,
+
 	--VGA
 	VGA_HS => vga_hsync,
 	VGA_VS => vga_vsync,
@@ -278,7 +248,6 @@ guest: COMPONENT  mist_top
 	VGA_G => vga_green(7 downto 2),
 	VGA_B => vga_blue(7 downto 2)
   );
-
 
 
 -- Pass internal signals to external SPI interface
@@ -292,7 +261,7 @@ controller : entity work.substitute_mcu
 		jtag_uart => false
 	)
 	port map (
-		clk => clock_50_i,
+		clk => SYS_CLK,
 		reset_in =>  '1',
 		reset_out => reset_n,
 

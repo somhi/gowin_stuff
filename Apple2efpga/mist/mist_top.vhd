@@ -176,6 +176,18 @@ architecture datapath of mist_top is
   );
   end component;
 
+  component dac
+    generic (
+      C_bits : integer
+    );
+      port (
+      clk_i : in std_logic;
+      res_n_i : in std_logic;
+      dac_i : in std_logic_vector(C_bits-1 downto 0);
+      dac_o : out std_logic
+    );
+  end component;
+  
   signal addr_8 : std_logic_vector(15 downto 0);
   signal r_6 : std_logic_vector(7 downto 0);
   signal g_6 : std_logic_vector(7 downto 0);
@@ -526,7 +538,7 @@ begin
   DAC_C_L <= signed(psg_audio_l + (audio & "0000000")); 		
   DAC_C_R <= signed(psg_audio_r + (audio & "0000000")); 		
 
-  dac_l : work.dac
+  dac_l : dac
     generic map(10)
     port map (
       clk_i		=> CLK_14M,
@@ -535,7 +547,7 @@ begin
       dac_o 	=> AUDIO_L
       );
 
-  dac_r : work.dac
+  dac_r : dac
     generic map(10)
     port map (
       clk_i		=> CLK_14M,
