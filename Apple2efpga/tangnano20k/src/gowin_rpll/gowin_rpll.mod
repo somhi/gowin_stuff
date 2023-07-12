@@ -7,15 +7,15 @@
 
 -mod_name Gowin_rPLL
 -file_name gowin_rpll
--path /home/jordi/Documents/Coding/Github/FlappyBird/gowin/tangnano20k/src/gowin_rpll/
+-path /home/jordi/Documents/Coding/Github/gowin_stuff/Apple2efpga/tangnano20k/src/gowin_rpll/
 -type PLL
 -rPll true
 -file_type vlg
 -dev_type GW2AR-18C
 -dyn_idiv_sel false
--idiv_sel 3
+-idiv_sel 5
 -dyn_fbdiv_sel false
--fbdiv_sel 14
+-fbdiv_sel 26
 -dyn_odiv_sel false
 -odiv_sel 4
 -dyn_da_en true

@@ -8,10 +8,10 @@ use work.demistify_config_pkg.all;
 -------------------------------------------------------------------------
 
 entity tangnano20k_top is
-	port
-	(
+	port (
 		SYS_CLK			: IN  STD_LOGIC;
-		
+
+		KEY           	: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
 		LED0        	: OUT STD_LOGIC;
 
 		-- sdram magic ports 
@@ -21,10 +21,10 @@ entity tangnano20k_top is
 		O_sdram_cas_n 	: OUT STD_LOGIC;
 		O_sdram_ras_n 	: OUT STD_LOGIC;
 		O_sdram_wen_n 	: OUT STD_LOGIC;
-		IO_sdram_dq   	: INOUT STD_LOGIC_VECTOR(31 downto 0);
-		O_sdram_addr  	: OUT STD_LOGIC_VECTOR(10 downto 0);
-		O_sdram_ba    	: OUT STD_LOGIC_VECTOR(1 downto 0);
-		O_sdram_dqm   	: OUT STD_LOGIC_VECTOR(3 downto 0);
+		IO_sdram_dq   	: INOUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		O_sdram_addr  	: OUT STD_LOGIC_VECTOR(10 DOWNTO 0);
+		O_sdram_ba    	: OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+		O_sdram_dqm   	: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 		VGA_HS			: OUT STD_LOGIC;
 		VGA_VS			: OUT STD_LOGIC;
@@ -36,6 +36,8 @@ entity tangnano20k_top is
 		SIGMA_R			: OUT STD_LOGIC;
 		SIGMA_L			: OUT STD_LOGIC;
 
+		AUDIO_INPUT     : IN STD_LOGIC;
+
 		-- I2S audio		
 		I2S_BCLK		: OUT   STD_LOGIC	:= '0';
 		I2S_LRCLK		: OUT   STD_LOGIC	:= '0';
@@ -43,10 +45,7 @@ entity tangnano20k_top is
 		I2S_EN			: OUT   STD_LOGIC	:= '0';	
 
 		-- JOYSTICK 
-		-- JOY_CLK			: OUT   STD_LOGIC;
-		-- JOY_LOAD 		: OUT   STD_LOGIC;
-		-- JOY_DATA 		: in    STD_LOGIC;
-		-- joyP7_o			: OUT   STD_LOGIC	:= '1';
+
 
 		-- PS2
 		PS2_KEYBOARD_CLK: INOUT STD_LOGIC;
@@ -55,13 +54,15 @@ entity tangnano20k_top is
 		PS2_MOUSE_DAT   : INOUT STD_LOGIC;
 
 		-- UART
-		AUDIO_INPUT     : IN STD_LOGIC;
 
 		-- SD Card
-		sd_cs_n_o       : out   STD_LOGIC := '1';
-		sd_sclk_o       : out   STD_LOGIC := '0';
-		sd_mosi_o       : out   STD_LOGIC := '0';
-		sd_miso_i       : in    STD_LOGIC
+		SD_SCK 			: OUT 	STD_LOGIC := '0';	--CLK
+		SD_CMD 			: OUT 	STD_LOGIC := '0';	--MOSI
+		SD_DAT0			: IN 	STD_LOGIC;			--MISO
+		SD_DAT3			: INOUT STD_LOGIC := '1'	--CS
+		-- SD_DAT1		: INOUT STD_LOGIC := '1';
+		-- SD_DAT2		: INOUT STD_LOGIC := '1';	
+
 	);
 END entity;
 
@@ -128,42 +129,28 @@ Port (
 		L_data : 	in std_logic_vector(15 downto 0);  	-- LEFT data (15-bit signed)
 		R_data : 	in std_logic_vector(15 downto 0)  	-- RIGHT data (15-bit signed) 
 );
-end component;	
+end component;
 
 -- DAC AUDIO     
-	signal dac_l: signed(9 downto 0);
-	signal dac_r: signed(9 downto 0);
-	signal dac_l_s : signed(15 downto 0);
-	signal dac_r_s : signed(15 downto 0);
+	signal dac_l	: signed(9 downto 0);
+	signal dac_r	: signed(9 downto 0);
+	signal dac_l_s  : signed(15 downto 0);
+	signal dac_r_s  : signed(15 downto 0);
 
-	signal i2s_mclk		    : std_logic;
+	signal i2s_mclk	    : std_logic;
 
--- JOYSTICKS
-	signal joy1up			: std_logic		:= '1';
-	signal joy1down			: std_logic		:= '1';
-	signal joy1left			: std_logic		:= '1';
-	signal joy1right		: std_logic		:= '1';
-	signal joy1fire1		: std_logic		:= '1';
-	signal joy1fire2		: std_logic		:= '1';
-	signal joy2up			: std_logic		:= '1';
-	signal joy2down			: std_logic		:= '1';
-	signal joy2left			: std_logic		:= '1';
-	signal joy2right		: std_logic		:= '1';
-	signal joy2fire1		: std_logic		:= '1';
-	signal joy2fire2		: std_logic		:= '1';
-	signal clk_sys_out   	: std_logic;
-
-	--
-	signal sdram_addr		: std_logic_vector(12 downto 0);
+--
+	signal sdram_addr	: std_logic_vector(12 downto 0);
+	signal act_led 		: std_logic;
 
 begin
 
 
 -- SPI
-sd_cs_n_o<=sd_cs;
-sd_mosi_o<=sd_mosi;
-sd_miso<=sd_miso_i;
-sd_sclk_o<=sd_clk;
+SD_DAT3<=sd_cs;
+SD_CMD<=sd_mosi;
+sd_miso<=SD_DAT0;
+SD_SCK<=sd_clk;
 
 -- External devices tied to GPIOs
 ps2_mouse_dat_in<=ps2_mouse_dat;
@@ -176,8 +163,8 @@ ps2_keyboard_dat <= '0' when ps2_keyboard_dat_out='0' else 'Z';
 ps2_keyboard_clk_in<=ps2_keyboard_clk;
 ps2_keyboard_clk <= '0' when ps2_keyboard_clk_out='0' else 'Z';
 	
-joya<="11" & joy1fire2 & joy1fire1 & joy1right & joy1left & joy1down & joy1up;
-joyb<="11" & joy2fire2 & joy2fire1 & joy2right & joy2left & joy2down & joy2up;
+joya<="11111111";
+joyb<="11111111";
 
 
 VGA_R<=vga_red(7 downto 5);
@@ -209,7 +196,7 @@ O_sdram_addr <= sdram_addr(10 downto 0);
 guest: COMPONENT  mist_top
   port map (
     CLOCK_27 => SYS_CLK&SYS_CLK,
-    LED => LED0,
+    LED => act_led,
 	
 	--SPI
 	SPI_DO => spi_fromguest,
@@ -262,8 +249,8 @@ controller : entity work.substitute_mcu
 	)
 	port map (
 		clk => SYS_CLK,
-		reset_in =>  '1',
-		reset_out => reset_n,
+		reset_in  => not KEY(0),  --'1'		--reset_in  when 0
+		reset_out => reset_n,				--reset_out when 0
 
 		-- SPI signals
 		spi_miso => sd_miso,
@@ -287,8 +274,8 @@ controller : entity work.substitute_mcu
 		ps2m_clk_out => ps2_mouse_clk_out,
 		ps2m_dat_out => ps2_mouse_dat_out,
 
-		buttons => (others=>'1'),
-		
+		buttons => (0 => not KEY(1), others => '1'),	-- 0 => OSD_button   
+
 		-- JOYSTICKS
 		joy1 => joya,
 		joy2 => joyb,
@@ -299,6 +286,9 @@ controller : entity work.substitute_mcu
 		intercept => intercept
 
 );
+
+--LED <= (0 => not act_led, others => '1');
+LED0 <= not act_led;
 
 end rtl;
 

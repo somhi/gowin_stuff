@@ -44,7 +44,10 @@ localparam OSD_WIDTH_PADDED = OSD_WIDTH + (OSD_WIDTH >> 1);  // 25% padding left
 // this core supports only the display related OSD commands
 // of the minimig
 reg        osd_enable;
-(* ramstyle = "no_rw_check" *) reg  [7:0] osd_buffer[2047:0];  // the OSD buffer itself
+// Quartus IDE
+// (* ramstyle = "no_rw_check" *) reg  [7:0] osd_buffer[2047:0];  // the OSD buffer itself
+// Gowin IDE
+reg  [7:0] osd_buffer[2047:0]  /* synthesis syn_ramstyle = "distributed_ram" */;  //block_ram
 
 // the OSD has its own SPI interface to the io controller
 always@(posedge SPI_SCK, posedge SPI_SS3) begin

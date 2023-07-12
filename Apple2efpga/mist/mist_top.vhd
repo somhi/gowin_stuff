@@ -293,6 +293,9 @@ architecture datapath of mist_top is
   signal joyy       : std_logic;
   signal pdl_strobe : std_logic;
 
+  signal clk_p      : std_logic;
+  signal clk_p5     : std_logic;
+
 begin
 
 
@@ -317,16 +320,47 @@ begin
   
   SDRAM_CLK <= CLK_28M;
   
-  pll : entity work.mist_clk 
-  port map (
-    areset => '0',
-    inclk0 => CLOCK_27(0),
-    c0     => CLK_28M,
-    c1     => CLK_14M,
-    locked => pll_locked
-    );
+  -- pll : entity work.mist_clk 
+  -- port map (
+  --   areset => '0',
+  --   inclk0 => CLOCK_27(0),
+  --   c0     => CLK_28M,
+  --   c1     => CLK_14M,
+  --   locked => pll_locked
+  --   );
 
+  CLK_28M <= clk_p;
+
+  pll_p5 : entity work.Gowin_rPLL
+  port map(
+    clkin  => CLOCK_27(0),
+    clkout => clk_p5,
+    lock   => pll_locked
+  );
+
+  pll_p : entity work.Gowin_CLKDIV  
+  port map(
+    clkout => clk_p,
+    hclkin => clk_p5,
+    resetn => pll_locked
+  );
+
+  -- clk_div : entity work.Gowin_CLKDIV2  
+  -- port map(
+  --   clkout => (CLK_14M),
+  --   hclkin => (clk_p),
+  --   resetn => pll_locked
+  -- );
  
+  process(CLK_28M)
+  begin
+    if rising_edge(CLK_28M) then
+      CLK_14M <= not CLK_14M;
+    end if;
+  end process;
+
+
+
   -- Paddle buttons
   -- GAMEPORT input bits:
   --  7    6    5    4    3   2   1    0

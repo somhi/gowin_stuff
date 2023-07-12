@@ -4,7 +4,7 @@
 //GOWIN Version: V1.9.8.11 Education
 //Part Number: 
 //Device: 
-//Created Time: Sat Jul  8 00:10:06 2023
+//Created Time: Wed Jul 12 18:14:26 2023
 
 //Change the instance name and port connections to the signal names
 //--------Copy here to design--------
