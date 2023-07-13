@@ -67,6 +67,16 @@ constant demistify_serialdebug : std_logic := '0';
    		UART_RX 	: in std_logic;
 			DAC_C_L  : out signed(9 downto 0);
 			DAC_C_R  : out signed(9 downto 0);
+
+			VGA_CLK		:	 OUT STD_LOGIC;
+			VGA_CLK5	:	 OUT STD_LOGIC;
+			VGA_BLANK	:	 OUT STD_LOGIC;
+			vga_x_hs	:	 OUT STD_LOGIC;
+			vga_x_vs	:	 OUT STD_LOGIC;
+			vga_x_r		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+			vga_x_g		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+			vga_x_b		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+
     		LED 		: out std_logic
 		);
 	END COMPONENT;

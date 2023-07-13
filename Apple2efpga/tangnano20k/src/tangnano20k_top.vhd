@@ -26,11 +26,18 @@ entity tangnano20k_top is
 		O_sdram_ba    	: OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 		O_sdram_dqm   	: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 
-		VGA_HS			: OUT STD_LOGIC;
-		VGA_VS			: OUT STD_LOGIC;
-		VGA_R			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-		VGA_G			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-		VGA_B			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		--VGA
+		-- VGA_HS			: OUT STD_LOGIC;
+		-- VGA_VS			: OUT STD_LOGIC;
+		-- VGA_R			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		-- VGA_G			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		-- VGA_B			: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+		-- tmds
+		tmds_d_p 		: out std_logic_vector(2 downto 0);
+		tmds_d_n 		: out std_logic_vector(2 downto 0);
+		tmds_clk_p 		: out std_logic;
+		tmds_clk_n 		: out std_logic;
 
 		-- AUDIO
 		SIGMA_R			: OUT STD_LOGIC;
@@ -108,6 +115,12 @@ architecture RTL of tangnano20k_top is
 	signal vga_hsync : std_logic;
 	signal vga_vsync : std_logic;
 
+	signal VGA_R	: std_logic_vector(2 downto 0);
+	signal VGA_G	: std_logic_vector(2 downto 0);
+	signal VGA_B	: std_logic_vector(2 downto 0);
+	signal VGA_HS 	: std_logic;
+	signal VGA_VS 	: std_logic;
+
 -- RS232 serial
 	signal rs232_rxd : std_logic;
 	signal rs232_txd : std_logic;
@@ -143,6 +156,15 @@ end component;
 	signal sdram_addr	: std_logic_vector(12 downto 0);
 	signal act_led 		: std_logic;
 
+	signal vga_clk5  : std_logic;
+	signal vga_clk   : std_logic;
+	signal vga_blank : std_logic;
+	signal vga_x_r   : std_logic_vector(5 downto 0);
+	signal vga_x_g   : std_logic_vector(5 downto 0);
+	signal vga_x_b   : std_logic_vector(5 downto 0);
+	signal vga_x_hs  : std_logic;
+	signal vga_x_vs  : std_logic;
+
 begin
 
 
@@ -172,6 +194,31 @@ VGA_G<=vga_green(7 downto 5);
 VGA_B<=vga_blue(7 downto 5);
 VGA_HS<=vga_hsync;
 VGA_VS<=vga_vsync;
+
+
+U4: entity work.svo_hdmi_out
+port map (
+    resetn => '1',
+	--video clocks
+    clk_pixel => vga_clk,
+    clk_5x_pixel => vga_clk5,
+    locked => '1',
+	--input VGA
+    rout => vga_x_r,
+    bout => vga_x_b,
+    gout => vga_x_g,
+    hsync_n => not vga_x_hs,
+    vsync_n => not vga_x_vs,
+    blank => vga_blank,
+	--output signals
+    tmds_clk_n => tmds_clk_n,
+    tmds_clk_p => tmds_clk_p,
+    tmds_d_n => tmds_d_n,
+    tmds_d_p => tmds_d_p,
+    tmds_ts => open
+);
+
+
 
 I2S_EN <= '1';
 
@@ -231,9 +278,19 @@ guest: COMPONENT  mist_top
 	--VGA
 	VGA_HS => vga_hsync,
 	VGA_VS => vga_vsync,
-	VGA_R => vga_red(7 downto 2),
-	VGA_G => vga_green(7 downto 2),
-	VGA_B => vga_blue(7 downto 2)
+	VGA_R  => vga_red(7 downto 2),
+	VGA_G  => vga_green(7 downto 2),
+	VGA_B  => vga_blue(7 downto 2),
+
+	VGA_CLK   => vga_clk,
+	VGA_CLK5  => vga_clk5,
+	VGA_BLANK => vga_blank,
+	vga_x_r   => vga_x_r,
+	vga_x_g   => vga_x_g,
+	vga_x_b   => vga_x_b,
+	vga_x_hs  => vga_x_hs,
+	vga_x_vs  => vga_x_vs
+
   );
 
 

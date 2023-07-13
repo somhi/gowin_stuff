@@ -29,9 +29,7 @@ entity mist_top is
 
   port (
     -- Clocks
-    
     CLOCK_27    : in std_logic_vector(1 downto 0); -- 27 MHz
-
 
     -- SDRAM
     SDRAM_nCS : out std_logic; -- Chip Select
@@ -55,23 +53,29 @@ entity mist_top is
     CONF_DATA0 : in std_logic;
 
     -- VGA output
-    
-
     VGA_HS,                                             -- H_SYNC
     VGA_VS : out std_logic;                             -- V_SYNC
     VGA_R,                                              -- Red[5:0]
     VGA_G,                                              -- Green[5:0]
     VGA_B : out std_logic_vector(5 downto 0);           -- Blue[5:0]
-    
+
+    VGA_CLK5  :  OUT STD_LOGIC;                             
+    VGA_CLK   :  OUT STD_LOGIC;                             
+    VGA_BLANK :  OUT STD_LOGIC;                                             
+    vga_x_hs	:	 OUT STD_LOGIC;
+    vga_x_vs	:	 OUT STD_LOGIC;
+    vga_x_r		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+    vga_x_g		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+    vga_x_b		:	 OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+
     -- Audio
     AUDIO_L,
     AUDIO_R : out std_logic;
 	 -- DAC
-	 DAC_C_L  : out signed(9 downto 0);
-	 DAC_C_R  : out signed(9 downto 0);
+    DAC_C_L  : out signed(9 downto 0);
+    DAC_C_R  : out signed(9 downto 0);
 
     -- UART
-
     UART_RX : in std_logic;
 
     -- LEDG
@@ -188,10 +192,35 @@ architecture datapath of mist_top is
     );
   end component;
   
+
+  component osd is
+    generic (
+      OSD_COLOR : positive
+    );
+  port (
+    clk_sys : in std_logic;
+    ce  : in std_logic;
+    SPI_SCK : in std_logic;
+    SPI_SS3 : in std_logic;
+    SPI_DI  : in std_logic;
+    rotate  : in std_logic_vector(1 downto 0);
+    R_in  : in std_logic_vector(5 downto 0);
+    G_in  : in std_logic_vector(5 downto 0);
+    B_in  : in std_logic_vector(5 downto 0);
+    HSync : in std_logic;
+    VSync : in std_logic;
+    R_out : out std_logic_vector(5 downto 0);
+    G_out : out std_logic_vector(5 downto 0);
+    B_out : out std_logic_vector(5 downto 0)
+  );
+  end component;
+
+
   signal addr_8 : std_logic_vector(15 downto 0);
   signal r_6 : std_logic_vector(7 downto 0);
   signal g_6 : std_logic_vector(7 downto 0);
   signal b_6 : std_logic_vector(7 downto 0);
+  signal de  : std_logic;
 
   signal CLK_28M, CLK_14M, CLK_2M, CLK_2M_D, PHASE_ZERO, PHASE_ZERO_R, PHASE_ZERO_F : std_logic;
   signal clk_div : unsigned(1 downto 0);
@@ -295,6 +324,7 @@ architecture datapath of mist_top is
 
   signal clk_p      : std_logic;
   signal clk_p5     : std_logic;
+  signal clk_p5r    : std_logic;
 
 begin
 
@@ -338,10 +368,12 @@ begin
     lock   => pll_locked
   );
 
+  clk_p5r <= clk_p5;
+
   pll_p : entity work.Gowin_CLKDIV  
   port map(
     clkout => clk_p,
-    hclkin => clk_p5,
+    hclkin => clk_p5r,
     resetn => pll_locked
   );
 
@@ -484,11 +516,42 @@ begin
     VGA_CLK    => open,
     VGA_HS     => hsync,
     VGA_VS     => vsync,
-    VGA_BLANK  => open,
+    VGA_BLANK  => de,
     VGA_R      => r,
     VGA_G      => g,
     VGA_B      => b
     );
+
+
+    osd_inst : osd
+    generic map (
+      OSD_COLOR		=> 4
+    )
+  port map (
+    clk_sys => CLK_28M,
+    ce => CLK_14M,           --ce_x1
+    SPI_SCK => SPI_SCK,
+    SPI_SS3 => SPI_SS3,
+    SPI_DI => SPI_DI,
+    rotate => "00",
+    R_in => r_6(7 downto 2),
+    G_in => g_6(7 downto 2),
+    B_in => b_6(7 downto 2),
+    HSync => hsync,
+    VSync => vsync,
+    R_out => vga_x_r,
+    G_out => vga_x_g,
+    B_out => vga_x_b
+  );
+
+    --566x192@59Hz
+    VGA_CLK5  <= clk_p5;
+    VGA_CLK   <= clk_p;     --CLK_14M
+    VGA_BLANK <= not de;
+    vga_x_hs  <= hsync;
+    vga_x_vs  <= vsync;
+
+    
 
   keyboard : entity work.keyboard port map (
     PS2_Clk  => ps2Clk,
@@ -659,5 +722,6 @@ begin
       VGA_G  => VGA_G,
       VGA_B  => VGA_B
     );
+
 
 end datapath;
