@@ -5,6 +5,7 @@
     <Version>5</Version>
     <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
     <FileList>
+        <File path="src/sdram.v" type="file.verilog" enable="1"/>
         <File path="../mist/mist-modules/arcade_inputs.v" type="file.verilog" enable="1"/>
         <File path="../mist/mist-modules/cofi.sv" type="file.verilog" enable="1"/>
         <File path="../mist/mist-modules/data_io.v" type="file.verilog" enable="1"/>
@@ -15,7 +16,7 @@
         <File path="../mist/mist-modules/user_io.sv" type="file.verilog" enable="1"/>
         <File path="../mist/mist-modules/user_io.v" type="file.verilog" enable="0"/>
         <File path="../mist/mist_sd_card.sv" type="file.verilog" enable="1"/>
-        <File path="../mist/sdram.v" type="file.verilog" enable="1"/>
+        <File path="../mist/sdram.v" type="file.verilog" enable="0"/>
         <File path="../mockingboard/YM2149.sv" type="file.verilog" enable="1"/>
         <File path="src/dualshock_controller.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_clkdiv/gowin_clkdiv.v" type="file.verilog" enable="1"/>
@@ -52,9 +53,7 @@
         <File path="../demistify_config_pkg.vhd" type="file.vhdl" enable="1"/>
         <File path="../disk_ii.vhd" type="file.vhdl" enable="1"/>
         <File path="../disk_ii_rom.vhd" type="file.vhdl" enable="1"/>
-        <File path="../firmware/controller_rom1_byte.vhd" type="file.vhdl" enable="0"/>
         <File path="../firmware/controller_rom1_word.vhd" type="file.vhdl" enable="1"/>
-        <File path="../firmware/controller_rom2_byte.vhd" type="file.vhdl" enable="0"/>
         <File path="../firmware/controller_rom2_word.vhd" type="file.vhdl" enable="1"/>
         <File path="../keyboard.vhd" type="file.vhdl" enable="1"/>
         <File path="../mist/mist-modules/dac.vhd" type="file.vhdl" enable="1"/>
