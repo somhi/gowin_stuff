@@ -325,6 +325,7 @@ architecture datapath of mist_top is
   signal clk_p      : std_logic;
   signal clk_p5     : std_logic;
   signal clk_p5r    : std_logic;
+  signal CLK_14x5   : std_logic;
 
 begin
 
@@ -359,12 +360,11 @@ begin
   --   locked => pll_locked
   --   );
 
-  CLK_28M <= clk_p;
 
   pll_p5 : entity work.Gowin_rPLL
   port map(
     clkin  => CLOCK_27(0),
-    clkout => clk_p5,
+    clkout => clk_p5,       --140 MHz
     lock   => pll_locked
   );
 
@@ -372,22 +372,25 @@ begin
 
   pll_p : entity work.Gowin_CLKDIV  
   port map(
-    clkout => clk_p,
+    clkout => clk_p,        -- 28 MHz
     hclkin => clk_p5r,
     resetn => pll_locked
   );
 
-  -- clk_div : entity work.Gowin_CLKDIV2  
-  -- port map(
-  --   clkout => (CLK_14M),
-  --   hclkin => (clk_p),
-  --   resetn => pll_locked
-  -- );
- 
+  CLK_28M <= clk_p;
+
   process(CLK_28M)
   begin
     if rising_edge(CLK_28M) then
       CLK_14M <= not CLK_14M;
+    end if;
+  end process;
+
+ 
+  process(clk_p5)
+  begin
+    if rising_edge(clk_p5) then
+      CLK_14x5 <= not CLK_14x5;
     end if;
   end process;
 
@@ -523,13 +526,13 @@ begin
     );
 
 
-    osd_inst : osd
+  osd_inst : osd
     generic map (
       OSD_COLOR		=> 4
     )
   port map (
     clk_sys => CLK_28M,
-    ce => CLK_14M,           --ce_x1
+    ce => CLK_14M,           --ce_x1  -- CLK_14M
     SPI_SCK => SPI_SCK,
     SPI_SS3 => SPI_SS3,
     SPI_DI => SPI_DI,
@@ -545,8 +548,8 @@ begin
   );
 
     --566x192@59Hz
-    VGA_CLK5  <= clk_p5;
-    VGA_CLK   <= clk_p;     --CLK_14M
+    VGA_CLK5  <= CLK_14x5;  --clk_p5;  
+    VGA_CLK   <= CLK_14M;   --clk_p;     
     VGA_BLANK <= not de;
     vga_x_hs  <= hsync;
     vga_x_vs  <= vsync;
