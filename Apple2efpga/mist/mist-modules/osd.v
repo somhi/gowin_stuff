@@ -47,7 +47,7 @@ reg        osd_enable;
 // Quartus IDE
 // (* ramstyle = "no_rw_check" *) reg  [7:0] osd_buffer[2047:0];  // the OSD buffer itself
 // Gowin IDE
-reg  [7:0] osd_buffer[2047:0]  /* synthesis syn_ramstyle = "distributed_ram" */;  //block_ram
+(* ramstyle = "no_rw_check" *) reg  [7:0] osd_buffer[2047:0]  /* synthesis syn_ramstyle = "distributed_ram" */;  //block_ram
 
 // the OSD has its own SPI interface to the io controller
 always@(posedge SPI_SCK, posedge SPI_SS3) begin
